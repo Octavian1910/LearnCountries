@@ -1,0 +1,287 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Previne scroll-ul dacă SVG-ul este mai mare decât viewport-ul */
+}
+
+svg {
+    width: 100vw; /* 100% din viewport width */
+    height: 100vh; /* 100% din viewport height */
+    display: block; /* Elimină orice spațiu alb în jurul SVG-ului */
+}
+
+
+
+body
+{
+    background-color: #343036;
+    font-family: "Courier New", Courier, monospace;
+}
+svg path
+{
+    fill: #6c8a9e;
+    stroke : #eee;
+    stroke-width : 0.25;
+}
+
+svg path:hover
+{
+    fill: #d27b04;
+    transition : 0.6s;
+    cursor : pointer;
+}
+
+.hoverEffect {
+    fill: #ff8000; /* Schimbă culoarea de fundal sau orice altă proprietate CSS pentru efectul de hover */
+}
+
+.Europe1
+{
+    fill: #228c2b;
+}
+
+.Asia1
+{
+    fill: #3a2787;
+}
+
+.Africa1
+{
+    fill: #ce7513;
+}
+
+
+.Americas1
+{
+    fill: #02dfd5;
+}
+
+.Antarctica1
+{
+    fill: #ffffff;
+}
+
+.Australia1
+{
+    fill: #c40000;
+}
+
+
+.navbar {
+    display: flex;
+    width: 100%; /* Asigură-te că navbarul se întinde pe întreaga lățime */
+    background-color: black;
+    color: white;
+    text-align: center;
+    position: relative; /* Poate fi ajustat la 'fixed' dacă vrei ca navbarul să rămână în partea de sus la scroll */
+    top: 0; /* Așează navbarul chiar la partea de sus a viewportului */
+    left: 0; /* Alinează la stânga viewportului */
+    z-index: 1000; /* Asigură-te că navbarul stă deasupra altor elemente de conținut */
+}
+
+
+.nav-content {
+    width: 90%;
+    margin-right: 0%;
+    display: flex;
+    align-items: center;
+}
+
+.brand {
+    font-size: 1.5em; /* Mărește dimensiunea fontului pentru titlu */
+    font-weight: bold; /* Face titlul mai proeminent */
+}
+
+.nav-button {
+    padding: 8px 16px; /* Padding pentru buton */
+    font-size: 1em; /* Dimensiunea fontului pentru textul din buton */
+    background-color: #007BFF; /* Culoare de fundal pentru buton */
+    color: white;
+    border: none;
+    border-radius: 4px; /* Rotunjește colțurile butonului */
+    cursor: pointer; /* Schimbă cursorul când este deasupra butonului */
+    transition: background-color 0.3s; /* Tranziție pentru culoarea de fundal a butonului */
+}
+
+
+.nav-button:hover {
+    background-color: #0056b3;
+}
+
+
+
+
+.sidenav {
+    height: 100%; /* Înălțime completă a ecranului */
+    width: 0; /* Lățime inițială 0, va fi schimbată cu JavaScript */
+    position: fixed; /* Poziționare fixă pe ecran */
+    z-index: 1; /* Asigură că bara laterală rămâne deasupra altor elemente */
+    top: 50%; /* Distanta de la partea de sus a ecranului */
+    left: 0; /* Poziția de la marginea stângă a ecranului */
+    background-color: #111; /* Culoare de fundal neagră */
+    overflow-x: hidden; /* Dezactivează derularea orizontală */
+    transition: width 0.5s ease; /* Efect de tranziție pentru schimbarea lățimii */
+}
+
+  .sidenav a,p {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+
+   .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+
+
+
+input[type=checkbox]
+{
+   margin-left : 20px;
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  transform: scale(2);
+
+}
+
+.play {
+    background-color: #6bdc65;
+    color: white;
+    height: 50px;
+    width: 150px;
+    border: none;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: color 0.4s;
+}
+
+.play:hover {
+    color: #6bdc65;
+    background-color: white;
+}
+
+.play_text
+{
+    color:white;
+}
+
+
+.correctAnswer
+{
+    fill: #45d150 !important;
+}
+
+.wrongAnswer
+{
+    fill: #f00000 !important;
+}
+
+
+
+/* Stiluri de bază pentru meniul hamburger */
+
+.hamburger-menu {
+    position: relative; /* Pentru poziționarea absolută a menu-content */
+    color: white;
+    background-color:black;
+}
+
+
+.hamburger-button {
+    background-color: #31a8a8;
+    color: #3f3f3f;
+    height: 50px;
+    width: 300px;
+    border: none;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: color 0.4s;
+}
+
+.hamburger-button:hover {
+    color:#227575;
+    background-color:#525252;
+}
+
+
+
+.menu-content {
+    display: none; /* Ascuns inițial */
+    background-color: #202020; /* Culoare de fundal a meniului */
+    width: 100%; /* Lățimea meniului */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* Umbră pentru un efect vizual plăcut */
+    text-align: left;
+    position: absolute;
+    top: 100%; /* Poziționat sub buton */
+    left: 0;
+    border-radius: 0 0 8px 8px; /* Colțuri rotunjite jos */
+    z-index: 119;
+}
+
+.hamburger-menu.active .menu-content {
+    display: block; /* Afișează meniul când este activ */
+    text-align: justify;
+
+}
+
+/* Stiluri pentru conținutul meniului */
+.menu-content input[type="checkbox"] {
+    text-align: left;
+    margin: 10px 15px; /* Spațiu în jurul checkbox-urilor */
+    transform: scale(1.5); /* Mărește checkbox-urile */
+}
+
+.menu-content label {
+    text-align: left;
+    color: white;
+    font-size: 20px;
+    display: inline; /* Afișează fiecare etichetă pe linie nouă */
+}
+
+.unavailable {
+    position: relative;
+    cursor: not-allowed;
+}
+
+
+
+/* Responsivitate */
+@media (max-width: 600px) {
+    .menu-content {
+        width: 100%; /* Meniul ocupă întreaga lățime pe dispozitive mobile */
+    }
+}
+
+
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+
