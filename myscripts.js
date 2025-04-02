@@ -26,19 +26,19 @@ async function fetchCountries() {
         const response = await fetch(url);
         const countries = await response.json();
         console.log(countries);
-        console.log('Succesfully fetched!');
+        console.log('Successfully fetched!');
+
         return countries.map(country => ({
             id: country.cca2.toUpperCase(), 
             name: country.name.common,
             capital: country.capital ? country.capital[0] : "No capital",
-            region : country.region,
-            flags : country.flags.png,
-            details: `Located in ${country.region}`,
+            region: country.region === "Oceania" ? "Australia" : country.region, // ✅ Înlocuim "Oceania" cu "Australia"
+            flags: country.flags.png,
+            details: `Located in ${country.region === "Oceania" ? "Australia" : country.region}`,
             area: country.area, 
             language: country.languages ? Object.values(country.languages).join(', ') : "No languages listed",
-            
         }));
-        
+
     } catch (error) {
         console.error('Failed to fetch countries:', error);
     }
@@ -74,9 +74,10 @@ window.onload = async () => {
         const element = document.getElementById(country.id);
         if (element) 
           {
+
             //element.classList.add('hoverEffect');
             element.addEventListener("click", () =>  displayCountryDetails(country));
-
+            console.log(country.region);
             switch (country.region) {
               case "Europe":
                   Europe.push(element);
@@ -90,7 +91,7 @@ window.onload = async () => {
               case "Americas":
                   Americas.push(element);
                   break;
-              case "Oceania":
+              case "Australia":
                   Australia.push(element);
                   break;
               case "Antarctica": 
@@ -192,7 +193,7 @@ function toggleMenu() {
                     case "isAustralia":
                         toggleContinentClass(Australia, 'Australia1', true);
                         break;
-                    case "isAntarctic":
+                    case "isAntarctica":
                         toggleContinentClass(Antarctic, 'Antarctica1', true); 
                         break;
                     default:       
@@ -292,7 +293,7 @@ playButton.addEventListener("click",    () =>  {
             }
             else
             {
-                playText.textContent = "🫠 Wrong Answer 🫠";
+                playText.textContent = "❌ Wrong Answer ❌";
                 choosedCountry.classList.add("wrongAnswer");
                 let correctCountry=document.getElementById(playModeAnswer.id);
                 correctCountry.classList.add("correctAnswer");

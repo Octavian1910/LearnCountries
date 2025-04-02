@@ -2,178 +2,170 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    overflow: hidden; /* Previne scroll-ul dacă SVG-ul este mai mare decât viewport-ul */
-}
-
-svg {
-    width: 100vw; /* 100% din viewport width */
-    height: 100vh; /* 100% din viewport height */
-    display: block; /* Elimină orice spațiu alb în jurul SVG-ului */
-}
-
-
-
-body
-{
+    overflow: hidden;
     background-color: #343036;
     font-family: "Courier New", Courier, monospace;
+    opacity: 0;
+    animation: fadeIn 1s ease-in forwards;
 }
-svg path
-{
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+
+/* SVG styles */
+svg {
+    width: 100vw;
+    height: 100vh;
+    display: block;
+}
+
+svg path {
     fill: #6c8a9e;
-    stroke : #eee;
-    stroke-width : 0.25;
+    stroke: #eee;
+    stroke-width: 0.25;
+    transition: fill 0.6s;
 }
 
-svg path:hover
-{
+svg path:hover {
     fill: #d27b04;
-    transition : 0.6s;
-    cursor : pointer;
+    cursor: pointer;
 }
 
-.hoverEffect {
-    fill: #ff8000; /* Schimbă culoarea de fundal sau orice altă proprietate CSS pentru efectul de hover */
-}
+/* Region colors */
+.hoverEffect { fill: #ff8000; transition: fill 0.4s ease; }
+.Europe1 { fill: #228c2b; }
+.Asia1 { fill: #3a2787; }
+.Africa1 { fill: #ce7513; }
+.Americas1 { fill: #02dfd5; }
+.Antarctica1 { fill: #ffffff; }
+.Australia1 { fill: #c40000; }
 
-.Europe1
-{
-    fill: #228c2b;
-}
+/* Answer states */
+.correctAnswer { fill: #45d150 !important; }
+.wrongAnswer { fill: #f00000 !important; }
 
-.Asia1
-{
-    fill: #3a2787;
-}
-
-.Africa1
-{
-    fill: #ce7513;
-}
-
-
-.Americas1
-{
-    fill: #02dfd5;
-}
-
-.Antarctica1
-{
-    fill: #ffffff;
-}
-
-.Australia1
-{
-    fill: #c40000;
-}
-
-
+/* Navigation */
 .navbar {
     display: flex;
-    width: 100%; /* Asigură-te că navbarul se întinde pe întreaga lățime */
+    width: 100%;
     background-color: black;
     color: white;
-    text-align: center;
-    position: relative; /* Poate fi ajustat la 'fixed' dacă vrei ca navbarul să rămână în partea de sus la scroll */
-    top: 0; /* Așează navbarul chiar la partea de sus a viewportului */
-    left: 0; /* Alinează la stânga viewportului */
-    z-index: 1000; /* Asigură-te că navbarul stă deasupra altor elemente de conținut */
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    align-items: center;
+    padding: 1vh 5vw; /* Adăugăm padding pentru spațiu pe laterale */
+    box-sizing: border-box; /* Asigură că padding-ul este inclus în lățimea navbar-ului */
 }
 
-
+/* Flexbox pentru centrare si distribuire butoanelor */
 .nav-content {
-    width: 90%;
-    margin-right: 0%;
+    width: 100%;
     display: flex;
+    justify-content: space-between; /* Împinge elementele la margini */
     align-items: center;
 }
 
 .brand {
-    font-size: 1.5em; /* Mărește dimensiunea fontului pentru titlu */
-    font-weight: bold; /* Face titlul mai proeminent */
+    font-size: 1.5em;
+    font-weight: bold;
+    overflow: hidden; /* Ascunde textul care nu este încă scris */
+    white-space: nowrap; /* Asigură-te că textul este pe o singură linie */
+    border-right: 0.15em solid #fff; /* Culoarea și grosimea cursorului */
+    width: 0; /* Inițial, textul este complet ascuns */
+    animation: typing 3s steps(30) 1s forwards, blink 0.75s step-end infinite, cursorDisappear 3s forwards; /* Adăugăm animația pentru dispariția cursorului */
 }
 
+/* Styling for the brand with typing effect */
+.brand {
+    font-size: 1.5em;
+    font-weight: bold;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 0.15em solid #fff;
+    width: 0;
+    display: inline-block; /* This will make the width only as wide as the content */
+    max-width: fit-content; /* Ensures the element only takes width needed for text */
+    animation: 
+        typing 3s steps(30) 1s forwards,
+        blink 0.75s step-end infinite 3s;
+}
+
+/* Styling for the brand with faster typing effect */
+.brand {
+    font-size: 1.5em;
+    font-weight: bold;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 0.15em solid #fff;
+    width: 0;
+    display: inline-block;
+    max-width: fit-content;
+    animation: 
+        typing 1.8s cubic-bezier(0.23, 1, 0.32, 1) 0.5s forwards,
+        blink 0.75s step-end infinite 2.3s;
+}
+
+/* Faster typing animation with cubic-bezier easing */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 15ch; /* Adjust this value to match your text length */
+    }
+}
+
+/* Cursor blink animation */
+@keyframes blink {
+    from, to { border-color: #fff; }
+    50% { border-color: transparent; }
+}
+
+
+.navbar_buttons {
+    display: flex;
+    margin-left: 0; /* Elimină alinierea la dreapta */
+    gap: 2vw; /* Spațiu între butoane */
+}
+
+/* Buttons */
 .nav-button {
-    padding: 8px 16px; /* Padding pentru buton */
-    font-size: 1em; /* Dimensiunea fontului pentru textul din buton */
-    background-color: #007BFF; /* Culoare de fundal pentru buton */
+    padding: 8px 16px;
+    font-size: 1em;
+    background-color: #007BFF;
     color: white;
     border: none;
-    border-radius: 4px; /* Rotunjește colțurile butonului */
-    cursor: pointer; /* Schimbă cursorul când este deasupra butonului */
-    transition: background-color 0.3s; /* Tranziție pentru culoarea de fundal a butonului */
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
-
 
 .nav-button:hover {
     background-color: #0056b3;
 }
 
-
-
-
-.sidenav {
-    height: 100%; /* Înălțime completă a ecranului */
-    width: 0; /* Lățime inițială 0, va fi schimbată cu JavaScript */
-    position: fixed; /* Poziționare fixă pe ecran */
-    z-index: 1; /* Asigură că bara laterală rămâne deasupra altor elemente */
-    top: 50%; /* Distanta de la partea de sus a ecranului */
-    left: 0; /* Poziția de la marginea stângă a ecranului */
-    background-color: #111; /* Culoare de fundal neagră */
-    overflow-x: hidden; /* Dezactivează derularea orizontală */
-    transition: width 0.5s ease; /* Efect de tranziție pentru schimbarea lățimii */
-}
-
-  .sidenav a,p {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-  }
-  
-  .sidenav a:hover {
-    color: #f1f1f1;
-  }
-
-   .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-  }
-
-
-
-input[type=checkbox]
-{
-   margin-left : 20px;
-  /* Double-sized Checkboxes */
-  -ms-transform: scale(2); /* IE */
-  -moz-transform: scale(2); /* FF */
-  -webkit-transform: scale(2); /* Safari and Chrome */
-  -o-transform: scale(2); /* Opera */
-  transform: scale(2);
-
-}
-
-.play {
-    background-color: #6bdc65;
-    color: white;
+.play, .hamburger-button {
     height: 50px;
-    width: 150px;
     border: none;
     border-radius: 25px;
     font-size: 18px;
     font-weight: bold;
     text-transform: uppercase;
     cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-    transition: color 0.4s;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.play {
+    background-color: #6bdc65;
+    color: white;
+    width: 150px;
+    transition: all 0.4s;
 }
 
 .play:hover {
@@ -181,88 +173,100 @@ input[type=checkbox]
     background-color: white;
 }
 
-.play_text
-{
-    color:white;
-}
-
-
-.correctAnswer
-{
-    fill: #45d150 !important;
-}
-
-.wrongAnswer
-{
-    fill: #f00000 !important;
-}
-
-
-
-/* Stiluri de bază pentru meniul hamburger */
-
-.hamburger-menu {
-    position: relative; /* Pentru poziționarea absolută a menu-content */
-    color: white;
-    background-color:black;
-}
-
-
 .hamburger-button {
-    background-color: #31a8a8;
-    color: #3f3f3f;
-    height: 50px;
+    background-color: #fcfcfc;
+    color: #000000;
     width: 300px;
-    border: none;
-    border-radius: 25px;
-    font-size: 18px;
-    font-weight: bold;
-    text-transform: uppercase;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-    transition: color 0.4s;
+    transition: all 0.4s;
 }
 
 .hamburger-button:hover {
-    color:#227575;
-    background-color:#525252;
+    background-color: #0e0e0e;
+    color: #ffffff;
 }
 
+.play_text {
+    color: white;
+    font-size: 25px;
+}
 
+/* Side Navigation */
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 50%;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: width 0.5s ease;
+}
+
+.sidenav a, .sidenav p {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+/* Checkbox */
+input[type=checkbox] {
+    margin-left: 20px;
+    transform: scale(2);
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+    position: relative;
+    color: white;
+    background-color: black;
+    display: inline-block;
+}
 
 .menu-content {
-    display: none; /* Ascuns inițial */
-    background-color: #202020; /* Culoare de fundal a meniului */
-    width: 100%; /* Lățimea meniului */
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* Umbră pentru un efect vizual plăcut */
+    display: none;
+    background-color: #202020;
+    width: 100%;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
     text-align: left;
     position: absolute;
-    top: 100%; /* Poziționat sub buton */
+    top: 100%;
     left: 0;
-    border-radius: 0 0 8px 8px; /* Colțuri rotunjite jos */
+    border-radius: 0 0 8px 8px;
     z-index: 119;
 }
 
 .hamburger-menu.active .menu-content {
-    display: block; /* Afișează meniul când este activ */
+    display: block;
     text-align: justify;
-
 }
 
-/* Stiluri pentru conținutul meniului */
 .menu-content input[type="checkbox"] {
     text-align: left;
-    margin: 10px 15px; /* Spațiu în jurul checkbox-urilor */
-    transform: scale(1.5); /* Mărește checkbox-urile */
+    margin: 10px 15px;
+    transform: scale(1.5);
 }
 
 .menu-content label {
     text-align: left;
     color: white;
     font-size: 20px;
-    display: inline; /* Afișează fiecare etichetă pe linie nouă */
+    display: inline;
 }
 
 .unavailable {
@@ -270,18 +274,14 @@ input[type=checkbox]
     cursor: not-allowed;
 }
 
-
-
-/* Responsivitate */
-@media (max-width: 600px) {
-    .menu-content {
-        width: 100%; /* Meniul ocupă întreaga lățime pe dispozitive mobile */
-    }
-}
-
-
-  @media screen and (max-height: 450px) {
+/* Responsive */
+@media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
-  }
+}
 
+@media (max-width: 600px) {
+    .menu-content {width: 100%;}
+    .navbar_buttons {flex-direction: column;}
+    .play, .hamburger-button {margin-bottom: 5px;}
+}
