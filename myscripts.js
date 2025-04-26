@@ -270,6 +270,7 @@ playButton.addEventListener("click",    () =>  {
         imgElement.src = country.flags;
         imgElement.width = 350; //  in pixels
         imgElement.height = 200; //  in pixels
+    
         paragraph.textContent="";
         paragraph.innerHTML = `${name} - ${capital} - ${details} <br> Spoken languages: ${language}`;
         SideNav.appendChild(paragraph);
