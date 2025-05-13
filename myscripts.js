@@ -3,6 +3,9 @@ let previousSelectedCountries = [];
 
 
 //Vectori pentru repartizarea tarilor pe continente
+
+
+
 let Europe = [];
 let Asia = [];
 let Africa = [];
@@ -99,6 +102,8 @@ window.onload = async () => {
 
 
     //Activarea sau dezactivarea efectului de hover
+
+
     function toggleContinentClass(continentArray, className, isChecked) {
         if (isChecked) {
 
@@ -217,10 +222,8 @@ window.onload = async () => {
     playText = document.getElementById("play_text");
 
     playButton.addEventListener("click", () => {
-
         playMode = true;
         toggleOffContinentClass();
-
         ///Cautam o tara care apartine unui continent selectat
         let itsok = false;
         if (somethingIsSelected() == true) {
@@ -229,15 +232,11 @@ window.onload = async () => {
                 if (selectedContinent["is" + countries[randomIndex].continent] == true && countries[randomIndex].area > 20000)
                     itsok = true;
             }
-
             playText.textContent = "🌎" + countries[randomIndex].name + "🌏";
             playModeCountry = countries[randomIndex].name;
             playModeAnswer = countries[randomIndex];
-
         }
         else playText.textContent = "Selectează măcar un continent!";
-
-
         //resetare efecte de hover pentru tarile alese la jocul precedent
         previousSelectedCountries.forEach(el => {
             el.classList.remove("correctAnswer");
@@ -251,8 +250,6 @@ window.onload = async () => {
 
 
 function displayCountryDetails(country) {
-
-    ///Detalii care urmeaza sa fie afisate.
     const { name, capital, continent, language } = country;
     imgElement.src = country.flags;
     imgElement.width = 350;
@@ -284,7 +281,6 @@ function displayCountryDetails(country) {
             previousSelectedCountries.push(chosenCountry, correctCountry);
         }
     }  
-
 }
 
 
