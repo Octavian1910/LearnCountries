@@ -29,7 +29,7 @@ const selectedContinent = {
 };
 
 async function fetchCountries() {
-    const url = 'https://restcountries.com/v3.1/all';
+    const url = 'https://restcountries.com/v3.1/all?fields=cca2,name,capital,region,flags,area,languages';
     try {
         const response = await fetch(url);
         const countries = await response.json();
